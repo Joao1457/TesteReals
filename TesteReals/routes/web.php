@@ -7,4 +7,6 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::post('/update-status', [UserController::class, 'updateStatus'])->name('users.updateStatus');
+
 Route::resource('users', UserController::class);

@@ -124,6 +124,19 @@ class UserController extends Controller
     }
 
 
+    public function updateStatus(Request $request){
+
+        $status = $request->input('status');
+
+        foreach ($status as $userId => $status){
+            $user = User::find($userId);
+            if($user){
+                $user->role = $status;
+                $user->save();
+            }
+        }
+        return redirect()->back()->with('status','Alterações atualizadas com sucesso!');
+    }
     /**
      * Remove the specified resource from storage.
      */

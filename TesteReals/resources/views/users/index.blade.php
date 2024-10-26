@@ -36,9 +36,9 @@
         {{ session('status') }}
     </div>
     @endif
-    <div class="row justify-content-center" >
-        <div class="col-md-8 mt-3 p-3 text-center rounded" style="background-color: #4F4F4F;" >
-            <div class="overflow-y-auto max-h-screen p-6 text-white dark:text-gray-100" >
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-3 p-3 text-center rounded" style="background-color: #4F4F4F;">
+            <div class="overflow-y-auto max-h-screen p-6 text-white dark:text-gray-100">
                 <table class="table-auto mx-auto w-full text-center">
                     <thead>
                         <tr>
@@ -54,10 +54,16 @@
                             <td class="border px-4 py-2">{{ $user->name }}</td>
                             <td class="border px-4 py-2">{{$user->email}}</td>
                             <td class="border px-4 py-2">
-                                <div class="flex justify-center p-2 space-x-2">
+                                <div class="flex justify-center justify-content-end p-3 ">
                                     <a href="{{ route('users.edit', $user->id) }}" class="bg-primary text-white px-3 py-2 rounded text-center">
                                         Editar
                                     </a>
+                                </div>
+                                <div class="flex justify-center justify-content-end p-3">
+                                    <select name="status[{{ $user->id }}]" id="status{{ $user->id }}" class="form-select text-center p-2 bg-secondary-emphasis">
+                                        <option value="enabled" {{ $user->status == 'enabled' ? 'selected' : '' }}>Habilitado</option>
+                                        <option value="disabled" {{ $user->status == 'disabled' ? 'selected' : '' }}>Desabilitado</option>
+                                    </select>
                                 </div>
                             </td>
                         </tr>
