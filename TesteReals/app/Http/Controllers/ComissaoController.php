@@ -20,17 +20,41 @@ class ComissaoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $afiliadoId)
     {
-        //
+        return view('comissoes.create', compact('afiliadoId'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'valor' => 'required|numeric',
+            'data' => 'required|date',
+            'afiliado_id' => 'required|exists:afiliados,id',
+        ], [
+            'valor.required' => 'Informe o valor da comissão.',
+            'valor.numeric' => 'Digite o valor correto!',
+            'data.required' => 'Insira a data comissão!',
+            'data_vencimento.date' => 'Insira uma data válida!',
+        ]);
+
+
+        try {
+
+            Comissao::create([
+                'afiliado_id' => $request->afiliado_id,
+                'valor' => $request->valor,
+                'data' => $request->data,
+            ]);
+
+            return redirect()->route('afiliados.index')->with('status', 'Comissão criada com sucesso!');
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Ocorreu um erro ao criar uma comissão. Por favor, tente novamente.');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -38,7 +62,10 @@ class ComissaoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $afiliado = Afiliado::findOrFail($id);
+        $comissoes = $afiliado->comissoes;
+
+        return view('comissoes.comissao', compact('comissoes', 'afiliado'));
     }
 
     /**
@@ -46,7 +73,10 @@ class ComissaoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comissao = Comissao::findOrFail($id);
+        $afiliado = $comissao->afiliado;
+
+        return view('comissoes.edit', compact('comissao', 'afiliado'));
     }
 
     /**
@@ -54,7 +84,29 @@ class ComissaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedComissao = $request->validate([
+            'valor' => 'required|numeric',
+            'data' => 'required|date',
+            'afiliado_id' => 'required|exists:afiliados,id',
+        ], [
+            'valor.required' => 'Informe o valor da comissão.',
+            'valor.numeric' => 'Digite o valor correto!',
+            'data.required' => 'Insira a data comissão!',
+            'data_vencimento.date' => 'Insira uma data válida!',
+        ]);
+
+
+        try {
+
+            $comissoes = Comissao::findOrFail($id);
+            $comissoes->update($validatedComissao);
+
+            return redirect()->route('afiliados.index')->with('status', 'Comissão atualizada com sucesso!');
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Ocorreu um erro ao editar a comissão. Por favor, tente novamente.');
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -62,6 +114,14 @@ class ComissaoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $comissoes = Comissao::findOrFail($id);
+            $comissoes->delete();
+            session()->flash('status', 'Comissão excluída com sucesso!');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            session()->flash('error', 'Ocorreu um erro ao excluir a comissão. Por favor, tente novamente.');
+            return redirect()->back();
+        }
     }
 }

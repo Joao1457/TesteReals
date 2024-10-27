@@ -11,7 +11,6 @@ class CreateComissoesTable extends Migration
         Schema::create('comissoes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('afiliado_id')->constrained('afiliados')->onDelete('cascade');
-            $table->string('nome_afiliado', 100);
             $table->decimal('valor', 10, 2);
             $table->date('data');
             $table->timestamps();

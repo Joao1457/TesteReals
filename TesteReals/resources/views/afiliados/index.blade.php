@@ -69,7 +69,7 @@
                                 <td class="border px-4 py-2">{{ $afiliado -> email }}</td>
                                 <td class="border px-4 py-2">{{ $afiliado -> telefone }}</td>
                                 <td class="border px-4 py-2">{{ $afiliado -> endereco }}</td>
-                                <td class="border px-4 py-2">{{ $afiliado->estado}}</td>
+                                <td class="border px-4 py-2">{{ $afiliado -> estado }}</td>
                                 <td class="border px-4 py-2">{{ $afiliado -> cidade }}</td>
                                 <td class="border px-4 py-2">
                                     <div class="d-flex justify-content-end p-3">
@@ -94,7 +94,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="border px-4 py-2">comissão</td>
+                                <td class="border px-4 py-2">
+                                    <button type="button" class="btn btn-outline-light">
+                                        <a href="{{ route('comissoes.show', $afiliado->id) }}">Comissões</a>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -19,5 +19,7 @@ Route::post('/select-cidade', [CidadeController::class, 'selectCidade'])->name('
 Route::resource('users', UserController::class);
 Route::resource('afiliados', AfiliadoController::class);
 Route::resource('comissoes', ComissaoController::class);
+Route::get('/comissoes/create/{afiliadoId}', [ComissaoController::class, 'create'])->name('comissoes.create');
+
 
 

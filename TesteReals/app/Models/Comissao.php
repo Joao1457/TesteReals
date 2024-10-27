@@ -17,7 +17,6 @@ class Comissao extends Model
 
     protected $fillable = [
         'afiliado_id',
-        'nome_afiliado',
         'valor',
         'data',
     ];

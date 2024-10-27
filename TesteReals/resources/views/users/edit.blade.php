@@ -47,7 +47,7 @@
                     Sua senha deve ter entre 8 e 20 caracteres, conter letras e números, e não deve conter espaços, caracteres especiais ou emojis.
                 </div>
                 <div class="d-flex justify-content-center mt-2">
-                    <button class="btn btn-primary mx-2" type="submit">Registrar usuário</button>
+                    <button class="btn btn-primary mx-2" type="submit">Atualizar usuário</button>
                     <a href="{{ route('users.index') }}" class="btn btn-danger mx-2" role="button">Cancelar</a>
                 </div>
             </form>

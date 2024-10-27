@@ -66,13 +66,9 @@ class AfiliadoController extends Controller
         ]);
 
         $validatedAfiliado['cpf'] = preg_replace('/[^0-9]/', '', $request->cpf);
-        $estado = Estado::findOrFail($request->estado);
-
-
 
         try {
             $afiliado = Afiliado::create($validatedAfiliado);
-            $afiliado->estado = $estado->nome;
 
             session()->flash('status', 'Afiliado criado com sucesso!');
             return redirect()->route('afiliados.index');

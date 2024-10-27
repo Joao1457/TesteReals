@@ -28,13 +28,8 @@ class Afiliado extends Model
         'status',
     ];
 
-    public function estado()
-    {
-        return $this->belongsTo(Estado::class, 'estado_id');
-    }
-
     public function comissoes()
     {
-        return $this->hasMany(Comissao::class);
+        return $this->hasMany(Comissao::class, 'afiliado_id');
     }
 }
