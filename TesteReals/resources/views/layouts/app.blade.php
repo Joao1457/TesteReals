@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/js/app.js'])
+
 
     <style>
-        body{
+        body {
             background-color: hsla(0, 100%, 70%, 0.3);
         }
     </style>
@@ -20,7 +22,7 @@
         <ul class="nav nav-pills fw-bold text-white">
             <li class="nav-item"><a href="/" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link text-white">Usuários</a></li>
-            <li class="nav-item"><a href="" class="nav-link text-white">Afiliados</a></li>
+            <li class="nav-item"><a href="{{ route('afiliados.index') }}" class="nav-link text-white">Afiliados</a></li>
         </ul>
     </header>
 

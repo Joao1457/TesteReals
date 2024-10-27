@@ -131,7 +131,7 @@ class UserController extends Controller
         foreach ($status as $userId => $status){
             $user = User::find($userId);
             if($user){
-                $user->role = $status;
+                $user->status = $status;
                 $user->save();
             }
         }
