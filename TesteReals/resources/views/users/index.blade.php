@@ -60,7 +60,7 @@
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
                                 <td class="border px-4 py-2">
                                     <div class="d-flex justify-content-end p-3">
-                                        <a href="{{ route('users.edit', $user->id) }}" class="bg-primary text-white px-3 py-2 rounded text-center">
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary text-white px-3 py-2 rounded text-center">
                                             Editar
                                         </a>
                                     </div>
@@ -68,6 +68,7 @@
                                 <td class="border px-4 py-2">
                                     <div class="d-flex justify-content-end p-3">
                                         <div class="form-group">
+                                            <!-- seleção para definir o status do usuario -->
                                             <select name="status[{{ $user->id }}]"
                                                 id="status{{ $user->id }}"
                                                 class="form-select bg-light text-dark w-auto">

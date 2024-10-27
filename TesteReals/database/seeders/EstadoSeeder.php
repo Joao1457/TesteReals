@@ -12,6 +12,7 @@ class EstadoSeeder extends Seeder
      *
      * @return void
      */
+    // seeders para alimentar o banco de estados
     public function run()
     {
         $estados = [

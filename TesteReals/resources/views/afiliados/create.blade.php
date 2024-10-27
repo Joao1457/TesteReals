@@ -79,6 +79,7 @@
                 </div>
             </form>
             <script>
+                // script para função do select estado e cidade
                 document.addEventListener('DOMContentLoaded', function(){
 
                     var inputSelectEstado = document.querySelector('#estado');

@@ -32,6 +32,7 @@
         <div class="col-md bg-secondary rounded p-5">
             <form method="POST" action="{{ route('comissoes.store') }}" class="row g-3">
                 @csrf
+                <!-- input para armazenar o afiliado na comissao  -->
                 <input type="hidden" name="afiliado_id" value="{{ $afiliadoId }}">
                 <div class="mb-3">
                     <label for="valor" class="form-label">Valor</label>

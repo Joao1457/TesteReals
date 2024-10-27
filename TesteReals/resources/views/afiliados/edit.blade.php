@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cadastro de Afiliado')
+@section('title', 'Edição de Afiliado')
 
 @section('content')
 <!-- MENSAGEM DE ERRO DO BACK -->
@@ -80,7 +80,7 @@
                     </select>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
             </form>
             <script>

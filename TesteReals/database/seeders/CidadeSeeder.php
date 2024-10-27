@@ -12,6 +12,7 @@ class CidadeSeeder extends Seeder
      *
      * @return void
      */
+    // Seeder para alimentar o banco de cidades
     public function run(): void
     {
         $cidades = [

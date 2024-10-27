@@ -20,6 +20,8 @@ class ComissaoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    // create adaptado para receber o id do afiliado
     public function create(string $afiliadoId)
     {
         return view('comissoes.create', compact('afiliadoId'));

@@ -38,8 +38,8 @@
     </div>
     @endif
 
-    <div class="row justify-content-center">
-        <div class=" mt-3 p-3 text-center rounded" style="background-color: #4F4F4F;">
+    <div class="row  justify-content-center">
+        <div class=" mt-3 p-3 text-center rounded" style="background-color: #4F4F4F; ">
             <div class="overflow-y-auto max-h-screen  text-white dark:text-gray-100">
                 <form action="{{ route('afiliados.afiliadoStatus') }}" method="POST">
                     @csrf
@@ -73,7 +73,7 @@
                                 <td class="border px-4 py-2">{{ $afiliado -> cidade }}</td>
                                 <td class="border px-4 py-2">
                                     <div class="d-flex justify-content-end p-3">
-                                        <a href="{{ route('afiliados.edit', $afiliado->id) }}" class="bg-primary text-white px-3 py-2 rounded text-center">
+                                        <a href="{{ route('afiliados.edit', $afiliado->id) }}" class="btn btn-primary text-white px-3 py-2 rounded text-center">
                                             Editar
                                         </a>
                                     </div>
@@ -81,6 +81,7 @@
                                 <td class="border px-4 py-2">
                                     <div class="d-flex justify-content-end p-3">
                                         <div class="form-group">
+                                            <!-- seleção para definir o status do afiliado -->
                                             <select name="status[{{ $afiliado->id }}]"
                                                 id="status{{ $afiliado->id }}"
                                                 class="form-select bg-light text-dark w-auto">
@@ -94,10 +95,9 @@
                                         </div>
                                     </div>
                                 </td>
+                                <!-- redireciona para a sessão de comissão relacionada ao afiliado -->
                                 <td class="border px-4 py-2">
-                                    <button type="button" class="btn btn-outline-light">
-                                        <a href="{{ route('comissoes.show', $afiliado->id) }}">Comissões</a>
-                                    </button>
+                                    <a class="btn btn-light  text-dark m-2 px-3 py-2 rounded text-center" href="{{ route('comissoes.show', $afiliado->id) }}">Comissões</a>
                                 </td>
                             </tr>
                             @endforeach

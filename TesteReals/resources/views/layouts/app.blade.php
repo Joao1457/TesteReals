@@ -20,6 +20,7 @@
     <!-- Header -->
     <header class="navbar navbar-expand-lg d-flex justify-content-center py-3" style="background-color: #505050;">
         <ul class="nav nav-pills fw-bold text-white">
+            <!-- rotas para as funções do sistema -->
             <li class="nav-item"><a href="/" class="nav-link text-white">Home</a></li>
             <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link text-white">Usuários</a></li>
             <li class="nav-item"><a href="{{ route('afiliados.index') }}" class="nav-link text-white">Afiliados</a></li>
@@ -30,9 +31,7 @@
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
                     @yield('content')
-                </div>
             </div>
         </div>
     </main>
