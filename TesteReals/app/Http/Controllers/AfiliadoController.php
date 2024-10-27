@@ -97,7 +97,11 @@ class AfiliadoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $afiliados = Afiliado::findOrFail($id);
+        $estados = Estado::all();
+        $cidades = Cidade::all();
+
+        return view('afiliados.edit', compact('afiliados', 'estados', 'cidades'));
     }
 
     /**
@@ -105,7 +109,50 @@ class AfiliadoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $afiliados = Afiliado::findOrFail($id);
+
+        $validatedAfiliado = $request->validate([
+            'nome' => 'required|min:5|max:100|string',
+            'email' => 'required|email|max:255|unique:afiliados,email,' . $afiliados->id,
+            'cpf' => 'required|string',
+            'data_nascimento' => 'required|date',
+            'endereco' => 'required',
+            'telefone' => 'required',
+            'estado' => 'required',
+            'cidade' => 'required',
+        ], [
+            'nome.required' => 'Informe o nome do afiliado.',
+            'nome.min' => 'Insira no mínimo 5 caracteres para prosseguir!',
+            'nome.max' => 'O limite máximo do nome é de 100 caracteres!',
+            'email.required' => 'Insira um email.',
+            'email.email' => 'O formato do email está inválido.',
+            'email.max' => 'O limite máximo do email é de 255 caracteres!',
+            'email.unique' => 'Esse email já está sendo utilizado. Por favor, escolha outro.',
+            'cpf.required' => 'Digite um cpf!',
+            'data_vencimento.required'=>'Insira uma data!',
+            'data_vencimento.date'=>'Insira uma data válida!',
+            'endereco.required' => 'Digite o endereço do afiliado!',
+            'telefone.required' => 'Insira o numero de telefone do afiliado.',
+            'estado.required' => 'Selecione um estado.',
+            'cidade.required' => 'Selecione uma cidade.',
+        ]);
+
+        $validatedAfiliado['cpf'] = preg_replace('/[^0-9]/', '', $request->cpf);
+        $estado = Estado::findOrFail($request->estado);
+
+
+
+        try {
+
+            $afiliados->update($validatedAfiliado);
+
+            session()->flash('status', 'Afiliado atualizado com sucesso!');
+            return redirect()->route('afiliados.index');
+        } catch (\Exception $e) {
+            // dd($e);
+            session()->flash('error', 'Ocorreu um erro ao atualizar um afiliado. Por favor, tente novamente.');
+            return redirect()->back()->withInput();
+        }
     }
 
     public function afiliadoStatus(Request $request){
